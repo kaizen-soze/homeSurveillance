@@ -15,7 +15,7 @@ current_time = 0
 d = datetime.now()
 filename = "/repos/homeSurveillance/{0}-{1}-{2}-{3}-{4}-{5}.xvid".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
 out = cv2.VideoWriter(filename, fourcc, 24.0, (1920,1080))
@@ -36,7 +36,7 @@ while(cap.isOpened()):
         if (int(current_time) >= int(cfg['length'])):
             break
 
-print("Finishing up...")
+print("Finishing up after {0} seconds".format(cfg['length']))
 # Release everything if job is finished
 cap.release()
 out.release()
