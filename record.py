@@ -13,12 +13,12 @@ start_time = time.time()
 current_time = 0
 
 d = datetime.now()
-filename = "{0}-{1}-{2}-{3}-{4}-{5}.avi".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
+filename = "/repos/homeSurveillance/{0}-{1}-{2}-{3}-{4}-{5}.xvid".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
 
 cap = cv2.VideoCapture(1)
 # Define the codec and create VideoWriter object
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter(filename, fourcc, 20.0, (640,480))
+fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
+out = cv2.VideoWriter(filename, fourcc, 20.0, (1920,1080))
 
 while(cap.isOpened()):
     ret, frame = cap.read()
@@ -38,3 +38,4 @@ out.release()
 #cv2.destroyAllWindows()
 
 print("Finished!")
+print(filename)
