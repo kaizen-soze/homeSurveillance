@@ -23,9 +23,9 @@ while(True):
         break
 
     if cv2.waitKey(1) & 0xFF == ord('n'):
-    	flag = flags[index]
-    	color = cv2.cvtColor(frame, cv2.flag)
-    	current_flag = flag
+    	flag = getattr(cv2, flags[index])
+    	color = cv2.cvtColor(frame, flag)
+    	current_flag = flags[index]
     	index += 1
 
 # When everything done, release the capture
