@@ -23,12 +23,12 @@ while(True):
     if cv2.waitKey(1) & ord('q'):
         break
     elif cv2.waitKey(1) & ord('n'):
-            current_flag = flags[index]
-            print("Current flag: {}".format(current_flag))
-            flag = getattr(cv2, flags[index])
-            color = cv2.cvtColor(frame, flag)
-            cv2.destroyAllWindows()
-            index += 1
+        current_flag = flags[index]
+        print("Current flag: {}".format(current_flag))
+        flag = getattr(cv2, flags[index])
+        color = cv2.cvtColor(frame, flag)
+        cv2.destroyAllWindows()
+        index += 1
 
 # When everything done, release the capture
 cap.release()
