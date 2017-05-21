@@ -31,6 +31,8 @@ while(cap.isOpened()):
         current_time = time.time()
         if (int(current_time) >= int(cfg['length'])):
             break
+    else:
+        print(ret)
 
 # Release everything if job is finished
 cap.release()
