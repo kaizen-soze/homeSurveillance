@@ -7,7 +7,7 @@ cap = cv2.VideoCapture(0)
 
 # Define color flags
 flags = [i for i in dir(cv2) if i.startswith('COLOR_')]
-index = 29
+index = 30
 current_flag = flags[index]
 
 while(True):
