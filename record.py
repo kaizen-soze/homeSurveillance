@@ -33,7 +33,7 @@ while(cap.isOpened()):
         out.write(color)
 
         current_time = time.time()
-        if (int(current_time) >= int(cfg['length'])):
+        if (int(current_time) - start_time >= int(cfg['length'])):
             break
 
 print("Finishing up after {0} seconds".format(cfg['length']))
