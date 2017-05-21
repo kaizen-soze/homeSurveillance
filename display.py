@@ -22,7 +22,7 @@ while(True):
 
     if cv2.waitKey(1):
         if ord('q'):
-        break
+            break
 
         if ord('n'):
             current_flag = flags[index]
