@@ -27,9 +27,6 @@ while(cap.isOpened()):
 
         if(cfg['display_window']):
         	cv2.imshow('frame',frame)
-        	print("display_window is TRUE")
-        else:
-        	print("display_window is FALSE")
 
         # write the flipped frame
         out.write(frame)
@@ -37,9 +34,8 @@ while(cap.isOpened()):
         current_time = time.time()
         if (int(current_time) >= int(cfg['length'])):
             break
-    else:
-        print(ret)
 
+print("Finishing up...")
 # Release everything if job is finished
 cap.release()
 out.release()
@@ -47,5 +43,4 @@ out.release()
 if(cfg['display_window']):
 	cv2.destroyAllWindows()
 
-print("Finished!")
-print(filename)
+print("Done.")
