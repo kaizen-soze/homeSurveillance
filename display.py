@@ -4,7 +4,9 @@ import numpy as np
 import cv2
 
 cap = cv2.VideoCapture(0)
-video  = cv2.VideoWriter('video.avi', -1, 25, (640, 480));
+filename = 'rawr.xvid'
+fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
+video = cv2.VideoWriter(filename, fourcc, 24.0, (1920,1080))
 
 # Define color flags
 flags = [i for i in dir(cv2) if i.startswith('COLOR_')]
@@ -32,7 +34,7 @@ while(True):
         print("Current flag: {}".format(current_flag))
 
 # When everything done, release the capture
-video.relase()
+video.release()
 cap.release()
 cv2.destroyAllWindows()
 print("Current flag on quit: {}".format(current_flag))
