@@ -27,7 +27,7 @@ while(cap.isOpened()):
 
         if(cfg['display_window']):
             color = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        	cv2.imshow('frame',color)
+            cv2.imshow('frame',color)
 
         # write the flipped frame
         out.write(color)
@@ -42,6 +42,6 @@ cap.release()
 out.release()
 
 if(cfg['display_window']):
-	cv2.destroyAllWindows()
+    cv2.destroyAllWindows()
 
 print("Done.")
