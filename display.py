@@ -25,8 +25,8 @@ while(True):
     if cv2.waitKey(1) & 0xFF == ord('n'):
     	flag = flags[index]
     	color = cv2.cvtColor(frame, cv2.flag)
-    	current_flag = cv2.flag
-    	index++
+    	current_flag = flag
+    	index += 1
 
 # When everything done, release the capture
 cap.release()
