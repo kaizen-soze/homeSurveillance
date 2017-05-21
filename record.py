@@ -13,11 +13,12 @@ start_time = time.time()
 current_time = 0
 
 d = datetime.now()
-filename = "Videos/{0}-{1}-{2}-{3}-{4}-{5}.mp4".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
+filename = "Videos/{0}-{1}-{2}-{3}-{4}-{5}.avi".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
 
+cap = cv2.VideoCapture(1)
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter(filename,fourcc, 20.0, (1920,1080))
+out = cv2.VideoWriter(filename, fourcc, 20.0, (640,480))
 
 while(cap.isOpened()):
     ret, frame = cap.read()
@@ -30,7 +31,7 @@ while(cap.isOpened()):
         cv2.imshow('frame',frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-    else if (int(current_time) >= int(cfg['length'])):
+    elif (int(current_time) >= int(cfg['length'])):
         break
 
 # Release everything if job is finished
