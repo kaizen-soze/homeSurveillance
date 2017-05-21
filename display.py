@@ -19,11 +19,11 @@ while(True):
 
     # Display the resulting frame
     cv2.imshow('frame',color)
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    pressed = cv2.waitKey(1);
+    if pressed == 113:
         break
     
-    if cv2.waitKey(1) & 0xFF == ord('n'):
+    if pressed == 110:
         current_flag = flags[index]
         print("Current flag: {}".format(current_flag))
         flag = getattr(cv2, flags[index])
