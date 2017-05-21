@@ -25,8 +25,11 @@ while(cap.isOpened()):
     if ret==True:
         frame = cv2.flip(frame,0)
 
-        if(cfg['display_window'] == true):
+        if(cfg['display_window']):
         	cv2.imshow('frame',frame)
+        	print("display_window is TRUE")
+        else:
+        	print("display_window is FALSE")
 
         # write the flipped frame
         out.write(frame)
@@ -41,7 +44,7 @@ while(cap.isOpened()):
 cap.release()
 out.release()
 
-if(cfg['display_window'] == true):
+if(cfg['display_window']):
 	cv2.destroyAllWindows()
 
 print("Finished!")
