@@ -5,6 +5,11 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 
+# Define color flags
+flags = [i for i in dir(cv2) if i.startswith('COLOR_')]
+current_flag = ''
+index = 0
+
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -17,6 +22,13 @@ while(True):
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+    if cv2.waitKey(1) & 0xFF == ord('n'):
+    	flag = flags[index]
+    	color = cv2.cvtColor(frame, cv2.flag)
+    	current_flag = cv2.flag
+    	index++
+
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
+print("Current flag on quit: {}".format(current_flag))
