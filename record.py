@@ -23,13 +23,14 @@ out = cv2.VideoWriter(filename, fourcc, 24.0, (1920,1080))
 while(cap.isOpened()):
     ret, frame = cap.read()
     if ret==True:
-        frame = cv2.flip(frame,0)
+        color = cv2.flip(frame,0)
 
         if(cfg['display_window']):
-        	cv2.imshow('frame',frame)
+            color = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        	cv2.imshow('frame',color)
 
         # write the flipped frame
-        out.write(frame)
+        out.write(color)
 
         current_time = time.time()
         if (int(current_time) >= int(cfg['length'])):
