@@ -18,12 +18,15 @@ filename = "/repos/homeSurveillance/{0}-{1}-{2}-{3}-{4}-{5}.xvid".format(d.year,
 cap = cv2.VideoCapture(1)
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
-out = cv2.VideoWriter(filename, fourcc, 20.0, (1920,1080))
+out = cv2.VideoWriter(filename, fourcc, 24.0, (1920,1080))
 
 while(cap.isOpened()):
     ret, frame = cap.read()
     if ret==True:
         frame = cv2.flip(frame,0)
+
+        if(cfg['display_window'] == true):
+        	cv2.imshow('frame',frame)
 
         # write the flipped frame
         out.write(frame)
@@ -37,7 +40,9 @@ while(cap.isOpened()):
 # Release everything if job is finished
 cap.release()
 out.release()
-#cv2.destroyAllWindows()
+
+if(cfg['display_window'] == true):
+	cv2.destroyAllWindows()
 
 print("Finished!")
 print(filename)
