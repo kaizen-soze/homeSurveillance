@@ -6,7 +6,7 @@ import cv2
 cap = cv2.VideoCapture(0)
 filename = 'rawr.xvid'
 fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
-video = cv2.VideoWriter(filename, fourcc, 24.0, (1920,1080))
+video = cv2.VideoWriter.open(filename, fourcc, 24.0, (1920,1080))
 
 if(video.isOpened() is False):
     print("Oops! Unable to initialize {0}".format(filename))
@@ -20,7 +20,8 @@ current_flag = flags[index]
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
-    video.write(frame)
+    rawr = video.write(frame)
+    print(rawr)
 
     # Our operations on the frame come here
     flag = getattr(cv2, flags[index])
