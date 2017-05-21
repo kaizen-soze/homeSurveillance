@@ -4,9 +4,10 @@ import numpy as np
 import cv2
 
 cap = cv2.VideoCapture(0)
-filename = 'rawr.xvid'
-fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
-video = cv2.VideoWriter.open(filename, fourcc, 24.0, (1920,1080))
+filename = 'rawr.avi'
+#fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
+fourcc = cv2.VideoWriter_fourcc(*'X264')
+video = cv2.VideoWriter(filename, fourcc, 24.0, (1920,1080))
 
 if(video.isOpened() is False):
     print("Oops! Unable to initialize {0}".format(filename))
