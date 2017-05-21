@@ -20,14 +20,15 @@ while(True):
     # Display the resulting frame
     cv2.imshow('frame',color)
 
-    if cv2.waitKey(1) & ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-    elif cv2.waitKey(1) & ord('n'):
+    
+    if cv2.waitKey(1) & 0xFF == ord('n'):
         current_flag = flags[index]
         print("Current flag: {}".format(current_flag))
         flag = getattr(cv2, flags[index])
         color = cv2.cvtColor(frame, flag)
-        #cv2.destroyAllWindows()
+        cv2.destroyAllWindows()
         index += 1
 
 # When everything done, release the capture
