@@ -63,8 +63,8 @@ if(cfg['record']):
     d = datetime.now()
     filename = "/repos/homeSurveillance/{0}-{1}-{2}-{3}-{4}-{5}.mp4".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
     skvideo.io.vwrite(filename, video)
-
+    print("Create file: {0}".format(filename))
+    
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
-print("Current flag on quit: {}".format(current_flag))
