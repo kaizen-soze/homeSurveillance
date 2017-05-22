@@ -5,31 +5,30 @@ import cv2
 import sys
 import skvideo.io
 
-#cap = cv2.VideoCapture(0)
-cap = skvideo.io.VideoCapture(0)
-filename = 'rawr.avi'
-#fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
-fourcc = cv2.VideoWriter_fourcc(*'X264')
-video = cv2.VideoWriter(filename, fourcc, 24.0, (1920,1080))
+cap = cv2.VideoCapture(0)
 
-if(video.isOpened() is False):
-    print("Oops! Unable to initialize {0}".format(filename))
-    exit()
+video_length = 3 * 30;
+
+video = np.empty([video_length, 480, 640, 3], dtype = np.uint8)
+video = video.astype(np.uint8)
 
 # Define color flags
 flags = [i for i in dir(cv2) if i.startswith('COLOR_')]
 index = 30
+i = 0
 current_flag = flags[index]
 
-while(True):
+while(i <= video_length):
     # Capture frame-by-frame
     ret, frame = cap.read()
-    rawr = video.write(frame)
-    print(rawr)
 
     # Our operations on the frame come here
     flag = getattr(cv2, flags[index])
     color = cv2.cvtColor(frame, flag)
+
+    # Add to video
+    video[i] = video.write(frame)
+    i += 1
 
     # Display the resulting frame
     cv2.imshow('frame',color)
@@ -43,7 +42,7 @@ while(True):
         print("Current flag: {}".format(current_flag))
 
 # When everything done, release the capture
-video.release()
+skvideo.io.vwrite("zrawr.mp4", video)
 cap.release()
 cv2.destroyAllWindows()
 print("Current flag on quit: {}".format(current_flag))
