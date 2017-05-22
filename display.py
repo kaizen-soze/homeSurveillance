@@ -9,7 +9,7 @@ cap = cv2.VideoCapture(0)
 
 video_length = 3 * 30;
 
-video = np.empty([video_length, 480, 640, 3], dtype = np.uint8)
+video = np.empty([video_length, 480, 640, 4], dtype = np.uint8)
 video = video.astype(np.uint8)
 
 # Define color flags
@@ -27,7 +27,7 @@ while(i <= video_length):
     color = cv2.cvtColor(frame, flag)
 
     # Add to video
-    video[i] = video.write(frame)
+    video[i] = color
     i += 1
 
     # Display the resulting frame
