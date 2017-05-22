@@ -16,6 +16,8 @@ cap = cv2.VideoCapture(0)
 
 video_length = int(cfg['length']) * 24;
 
+print("Creating a video that is {0} frames long".format(video_length))
+
 video = np.empty([video_length, 480, 640, 4], dtype = np.uint8)
 video = video.astype(np.uint8)
 
@@ -49,16 +51,18 @@ while(cap.isOpened()):
     if pressed == 110:
         index += 1
         current_flag = flags[index]
-        print("Current flag: {}".format(current_flag))
+        print("Current flag: {0}".format(current_flag))
 
     current_time = time.time()
     if (int(current_time) - start_time >= int(cfg['length'])):
+        zzz = int(current_time) - start_time
+        print("Reached limit of {0} seconds".format(zzz))
         break
 
 if(cfg['record']):
     d = datetime.now()
     filename = "/repos/homeSurveillance/{0}-{1}-{2}-{3}-{4}-{5}.mp4".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
-    skvideo.io.vwrite("zrawr.mp4", video)
+    skvideo.io.vwrite(filename, video)
 
 # When everything done, release the capture
 cap.release()
