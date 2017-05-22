@@ -24,12 +24,7 @@ if(cfg['record']):
     video = np.empty([video_length, 480, 640, 4], dtype = np.uint8)
     video = video.astype(np.uint8)
 
-# Define color flags
-flags = [i for i in dir(cv2) if i.startswith('COLOR_')]
-index = 29
 i = 0
-current_flag = flags[index]
-
 start_time = time.time()
 current_time = 0
 
@@ -38,8 +33,7 @@ while(cap.isOpened()):
     ret, frame = cap.read()
 
     # Our operations on the frame come here
-    flag = getattr(cv2, flags[index])
-    color = cv2.cvtColor(frame, flag)
+    color = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
 
     if(cfg['record']):
         # Add to video
