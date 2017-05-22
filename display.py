@@ -42,8 +42,10 @@ while(cap.isOpened()):
     video[i] = color
     i += 1
 
-    # Display the resulting frame
-    cv2.imshow('frame',color)
+    if(cfg['display_window']):
+        # Display the resulting frame
+        cv2.imshow('frame',color)
+        
     pressed = cv2.waitKey(1);
     if pressed == 113:
         break
