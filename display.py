@@ -29,9 +29,8 @@ while(cap.isOpened()):
     flag = getattr(cv2, flags[index])
     color = cv2.cvtColor(frame, flag)
 
-    if(cfg['display_window']):
-        # Display the resulting frame
-        cv2.imshow('frame',color)
+    # Display the resulting frame
+    cv2.imshow('frame',color)
 
     pressed = cv2.waitKey(1);
     if pressed == 113:
@@ -41,12 +40,6 @@ while(cap.isOpened()):
         index += 1
         current_flag = flags[index]
         print("Current flag: {0}".format(current_flag))
-
-    current_time = time.time()
-    if (int(current_time) - int(start_time) >= int(cfg['length'])):
-        zzz = int(current_time) - start_time
-        print("Reached limit of {0} seconds".format(zzz))
-        break
 
 # When everything done, release the capture
 cap.release()
