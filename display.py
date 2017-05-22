@@ -14,8 +14,7 @@ video_length = 10 * frames_per_second
 
 # Define color flags
 flags = [i for i in dir(cv2) if i.startswith('COLOR_')]
-index = 29
-i = 0
+index = 30
 current_flag = flags[index]
 
 start_time = time.time()
@@ -30,13 +29,13 @@ while(cap.isOpened()):
     color = cv2.cvtColor(frame, flag)
 
     # Display the resulting frame
-    cv2.imshow('frame',color)
+    cv2.imshow('frame', color)
 
     pressed = cv2.waitKey(1);
-    if pressed == 113:
+    if pressed == 113:  # q
         break
     
-    if pressed == 110:
+    if pressed == 110:  # n
         index += 1
         current_flag = flags[index]
         print("Current flag: {0}".format(current_flag))
