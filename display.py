@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
-import numpy as np
+from datetime import datetime
+
 import cv2
+import numpy as np
 import sys
 import skvideo.io
 import time
