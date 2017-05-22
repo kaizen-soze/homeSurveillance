@@ -19,12 +19,13 @@ video_length = int(cfg['length']) * frames_per_second
 
 print("Creating a video that is {0} frames long".format(video_length))
 
-video = np.empty([video_length, 480, 640, 4], dtype = np.uint8)
-video = video.astype(np.uint8)
+if(cfg['record']):
+    video = np.empty([video_length, 480, 640, 4], dtype = np.uint8)
+    video = video.astype(np.uint8)
 
 # Define color flags
 flags = [i for i in dir(cv2) if i.startswith('COLOR_')]
-index = 30
+index = 29
 i = 0
 current_flag = flags[index]
 
@@ -39,9 +40,10 @@ while(cap.isOpened()):
     flag = getattr(cv2, flags[index])
     color = cv2.cvtColor(frame, flag)
 
-    # Add to video
-    video[i] = color
-    i += 1
+    if(cfg['record']):
+        # Add to video
+        video[i] = color
+        i += 1
 
     if(cfg['display_window']):
         # Display the resulting frame
