@@ -4,10 +4,15 @@ import numpy as np
 import cv2
 import sys
 import skvideo.io
+import time
+import yaml
+
+with open("config.yml", 'r') as ymlfile:
+    cfg = yaml.load(ymlfile)
 
 cap = cv2.VideoCapture(0)
 
-video_length = 3 * 30;
+video_length = int(cfg['length']) * 24;
 
 video = np.empty([video_length, 480, 640, 4], dtype = np.uint8)
 video = video.astype(np.uint8)
@@ -18,7 +23,10 @@ index = 30
 i = 0
 current_flag = flags[index]
 
-while(i <= video_length):
+start_time = time.time()
+current_time = 0
+
+while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
 
@@ -41,8 +49,16 @@ while(i <= video_length):
         current_flag = flags[index]
         print("Current flag: {}".format(current_flag))
 
+    current_time = time.time()
+    if (int(current_time) - start_time >= int(cfg['length'])):
+        break
+
+if(cfg['record']):
+    d = datetime.now()
+    filename = "/repos/homeSurveillance/{0}-{1}-{2}-{3}-{4}-{5}.mp4".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
+    skvideo.io.vwrite("zrawr.mp4", video)
+
 # When everything done, release the capture
-skvideo.io.vwrite("zrawr.mp4", video)
 cap.release()
 cv2.destroyAllWindows()
 print("Current flag on quit: {}".format(current_flag))
