@@ -14,7 +14,8 @@ with open("config.yml", 'r') as ymlfile:
 
 cap = cv2.VideoCapture(0)
 
-video_length = int(cfg['length']) * 24;
+frames_per_second = 25
+video_length = int(cfg['length']) * frames_per_second
 
 print("Creating a video that is {0} frames long".format(video_length))
 
@@ -45,7 +46,7 @@ while(cap.isOpened()):
     if(cfg['display_window']):
         # Display the resulting frame
         cv2.imshow('frame',color)
-        
+
     pressed = cv2.waitKey(1);
     if pressed == 113:
         break
@@ -56,7 +57,7 @@ while(cap.isOpened()):
         print("Current flag: {0}".format(current_flag))
 
     current_time = time.time()
-    if (int(current_time) - start_time >= int(cfg['length'])):
+    if (int(current_time) - int(start_time) >= int(cfg['length'])):
         zzz = int(current_time) - start_time
         print("Reached limit of {0} seconds".format(zzz))
         break
