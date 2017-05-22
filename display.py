@@ -2,8 +2,11 @@
 
 import numpy as np
 import cv2
+import sys
+import skvideo.io
 
-cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture(0)
+cap = skvideo.io.VideoCapture(0)
 filename = 'rawr.avi'
 #fourcc = cv2.VideoWriter_fourcc('X','V','I','D')
 fourcc = cv2.VideoWriter_fourcc(*'X264')
