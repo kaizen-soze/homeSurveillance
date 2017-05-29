@@ -23,7 +23,7 @@ video_length = int(cfg['length']) * frames_per_second
 print("Creating a video that is {0} frames long".format(video_length))
 
 if(cfg['record']):
-    video = np.empty([video_length, 480, 640, 4], dtype = np.uint8)
+    video = np.empty([video_length, 480, 640, 3], dtype = np.uint8)
     video = video.astype(np.uint8)
 
 i = 0
@@ -35,7 +35,7 @@ while(cap.isOpened()):
     ret, frame = cap.read()
 
     # Our operations on the frame come here
-    color = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
+    color = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
     if(cfg['record']):
         # Add frame to video. All the frames will live in memory
@@ -58,10 +58,10 @@ while(cap.isOpened()):
 
     # To find other key codes, use the waitkey script
 
-    current_time = time.time()
-    if (int(current_time) - int(start_time) >= int(cfg['length'])):
+    if (i >= video_length):
         elapsed = int(current_time) - int(start_time)
         print("Reached limit of {0} seconds".format(elapsed))
+        print("Value of i: {}".format(i))
         break
 
 if(cfg['record']):
