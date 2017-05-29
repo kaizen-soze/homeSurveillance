@@ -66,7 +66,7 @@ while(cap.isOpened()):
 
 if(cfg['record']):
     d = datetime.now()
-    filename = "/repos/homeSurveillance/{0}-{1}-{2}-{3}-{4}-{5}.mp4".format(d.year, d.month, d.day, d.hour, d.minute, d.second)
+    filename = "{0}/{1}-{2}-{3}-{4}-{5}-{6}.mp4".format(cfg['video_path'], d.year, d.month, d.day, d.hour, d.minute, d.second)
     skvideo.io.vwrite(filename, video)
     print("Created file: {0}".format(filename))
 

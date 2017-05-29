@@ -1,3 +1,4 @@
 length: 10
 display_window: true
 record: true
+video_path: '/repos/homeSurveillance/videos'
